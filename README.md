@@ -1,6 +1,6 @@
 # mapxus-map-sample-ios
 ### The sample for MapxusBaseSDK、MapxusMapSDK、MapxusVisualSDK and MapxusComponentKit.
-
+[中文版本](./README_CN.md)
 * Map Creation
 
   1. Create map with code
