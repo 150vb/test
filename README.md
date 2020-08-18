@@ -1,327 +1,340 @@
 # mapxus-map-sample-ios
+### The sample for MapxusBaseSDK、MapxusMapSDK、MapxusVisualSDK and MapxusComponentKit.
 
-The sample for MapxusMapSDK.
+* Map Creation
 
-* 创建地图
+  1. Create map with code
 
-  1. 创建地图（代码）
+     file name：CreateMapByCodeViewController
 
-     文件名：MXMCodingToShowMapViewController
+     summary：Create map with code.
 
-     简介：通过代码创建地图
+     detail：
 
-     详述：
+     * Create a map using code and set the map's central geographic coordinates and zoom level.
 
-     * 使用代码创建地图，并设置地图中心经纬度及缩放等级
+  2. Create map with Interface Builder
 
-  2. 创建地图（xib）
+     file name：CreateMapByXibViewController
 
-     文件名：MXMXibShowMapViewController
+     summary：Create map with Interface Builder.
 
-     简介：通过xib文件创建地图
+     detail：
 
-     详述：
+     * Placing view on xib to create map.
+     * Set the central geographic coordinates and zoom level of the map.
 
-     * 使用xib拖拽控件创建地图，并设置地图中心经纬度及缩放等级
+  3. Create map (Specify the initial building, floor and building adaptive margin)
 
-  3. 创建地图（指定初始建筑，楼层及建筑自适应边距）
+     file name：CreateMapWithSceneViewController
 
-     文件名：MXMBuildingInitializeViewController
+     summary：To Maximize the specified building indoor map by the setting margin range and switch to the setting floor.
 
-     简介：创建地图时在设置的边距范围内最大化显示指定的建筑并切换到设置楼层
+     detail：
 
-     详述：
+     * Create a parameter class MXMConfiguration instance with the specified building ID, floor and building adaptive margins.
+     * Initialize the map with the generated MXMConfiguration instance.
 
-     * 使用指定的建筑ID、楼层及建筑自适应边距创建参数类MXMConfiguration实例
-     * 通过生成的MXMConfiguration实例初始化地图
+  4. Create map (Specify the initial POI and zoom level)
 
-  4. 创建地图（指定初始POI及地图缩放等级）
+     file name：CreateMapWithPOIViewController
 
-     文件名：MXMPOIInitializeViewController
+     summary：To show the specified POI in the centre of the map and show the map by the setting zoom level when creating map.
 
-     简介：创建地图时在地图中心显示指定的POI，并设置地图缩放等级
+     detail：
 
-     详述：
+     * Create a parameter class MXMConfiguration instance using the specified POI, map zoom level.
+     * Initialize the map with the generated MXMConfiguration instance.
 
-     * 使用指定的POI、地图缩放等级创建参数类MXMConfiguration实例
-     * 通过生成的MXMConfiguration实例初始化地图
+* Map Interaction
 
-* 地图交互
+  1. Interaction of indoor map controller
 
-  1. 室内地图控件交互
+     file name：IndoorControlsViewController
 
-     文件名：MXMIndoorControlViewController
+     summary：Location of indoor map controllers.
 
-     简介：室内地图控件的位置
+     detail：
 
-     详述：
+     * Set whether the indoor map control is always hidden.
+     * Set indoor map control positions: left, right, top-left, top-right, bottom-left, bottom-right.
 
-     * 是否一直隐藏室内地图控件
-     * 设置室内地图控件位置：左边，右边，左上角，右上角，左下角，右下角
+  2. Map style setting
 
-  2. 修改地图外观
+     file name：MapAppearanceViewController
 
-     文件名：MXMMapAppearanceViewController
+     summary：Modify map style, mark language and control outdoor map hiding.
 
-     简介：修改地图配色，标注语言及控制室外地图隐藏
+     detail：
 
-     详述：
+     * Set whether to hide the outdoor map.
+     * Change map style.
+     * Change mark language.
 
-     * 是否隐藏室外地图
-     * 更换地图样式
-     * 更换地图标注语言
+  3. Gesture interaction for switching buildings
 
-  3. 切换建筑的手势交互
+     file name：SwitchingBuildingGesturesViewController
 
-     文件名：MXMSwitchingBuildingGesturesViewController
+     summary：Setting gestures for switching buildings.
 
-     简介：设置切换建筑手势
+     detail：
 
-     详述：
+     * Set whether or not to support tapping the screen to switch buildings.
+     * Set whether or not the indoor building moves to the center of the screen to automatically switch between buildings.
 
-     * 是否支持点击切换建筑
-     * 是否支持移动到中心区域自动切换建筑
+  4. Method interaction (Switching indoor scenes)
 
-  4. 方法交互（切换室内场景）
+     file name：FocusOnIndoorSceneViewController
 
-     文件名：MXMFocusOnIndoorScenesViewController
+     summary：Use code settings to focus on indoor scenes.
 
-     简介：代码设置聚焦的室内场景
+     detail：
 
-     详述：
+     * Set the building and floor the map focuses on
+     * Set focus effect: no zoom, zoom by animation, zoom without animation.
+     * Setting Architectural Adaptive Margins.
 
-     * 设置地图聚焦的建筑与楼层
-     * 设置聚焦效果：不缩放、通过动画缩放、无动画缩放
-     * 设置建筑自适应边距
+  5. Click event listener
 
-  5. 事件交互（点击）
+     file name：ClickEventListeningViewController
 
-     文件名：MXMClickEventListeningViewController
+     summary：Listener for click or long on the map, and click POI event.
 
-     简介：监听单击、长按地图事件，单击POI事件
+     detail：
+
+     * Click on the POI to trigger the `- mapView:didSingleTappedOnPOI:atCoordinate:onFloor:inBuilding:` callback method.
+     * Click on a map blank to trigger the `-mapView:didSingleTappedOnMapBlank:onFloor:inBuilding:` callback method.
+     * Press and hold the map to trigger the `-mapView:didLongPressedAtCoordinate:onFloor:inBuilding:` callback method.
+     
+6. Indoor scene switching event listener
+  
+   file name：SceneChangedEventListeningViewController
+  
+   summary：Listener for indoor scene switching events.
+  
+   detail：
+  
+   * Triggers the `-mapView:didChangeFloor:atBuilding:` callback method when switching to an indoor scene.
+  
+7. Get in or leave indoor scene event listener
+  
+   file name：IndoorSceneInAndOutListeningViewController
+  
+   summary：Listener for get in indoor or leave indoor scene.
+  
+   detail：
+  
+   * Triggers the `-mapView:doorMapWithIn:building:floor:` method when entering or exiting the indoor scene.
+  
+* Map Editing
 
-     详述：
+  1. Drawing markers by floor
 
-     * 单击地图，触发`- mapView:didSingleTappedAtCoordinate:`或`- mapView:didSingleTappedAtCoordinate:onFloor:inBuilding:`回调方法
-     * 单击地图，触发`- mapView:didLongPressedAtCoordinate:`或`- mapView:didLongPressedAtCoordinate:onFloor:inBuilding:`回调方法
-     * 长按地图回调
-     * 长按地图回调
-     * 点击地图空白处回调
-     * 点击地图POI回调
+     file name：IndoorMarkerViewController
 
-  6. 事件交互（建筑或楼层切换）
+     summary：Only display the markers on current floor.
+     
+     detail：
+     
+     * Create multiple instances of MXMPointAnnotation on different floors and add them to the map.
+     
+  2. Drawing polygons by floor
+  
+   file name：IndoorPolygonViewController
+  
+   summary：Only display the polygon on current floor.
+  
+   detail：
+  
+   * Creating a Layer Instance.
+  
+   * Add layer to mapview.
+     * Listen to floor switch, filter layer data.
+  
+* Indoor Positioning
 
-     文件名：
+  1. Indoor positioning
 
-     简介：
+     file name：DisplayLocationViewController
 
-     详述：
+     summary：Show the positioning location and different following mode.
+     
+     detail：
+     
+     * Real-time display of current position latitude, longitude, floor and level accuracy.
+     * Switching between different position-following modes.
 
-     * 在切换建筑或楼层时，触发`- (**void**)mapView: didChangeFloor: atBuilding:`方法
+* Search Service
 
-  7. 事件交互（进出室内场景）
+  1. Search building globally
 
-     文件名：
+     file name：SearchBuildingGlobalViewController
 
-     简介：
+     summary：Search building globally.
 
-     详述：
+     detail：
 
-     * 在进出室内场景时，触发`- mapView: indoorMapWithIn: building: floor:`方法
+     * Creating an instance of the search parameter class MXMBuildingSearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onBuildingSearchDone:response:` callback method.
 
-* 在地图上绘制
+  2. Search building in the specified area
 
-  1. 按楼层显示的标注绘制
+     file name：SearchBuildingInBoundViewController
 
-     文件名：
+     summary：Search building in the specified rectangular area.
 
-     简介：
+     detail：
 
-     详述：
+     * Creating an instance of the search parameter class MXMBuildingSearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onBuildingSearchDone:response:` callback method.
 
-     * 切换建筑与楼层
-     * 设置缩放方式
-     * 设置缩放边距
+  3. Search building nearby
 
-* 室内定位效果展示
+     file name：SearchBuildingNearbyViewController
 
-  1. 室内定位效果展示
+     summary：Search building in the specified circular area.
 
-     文件名：
+     detail：
 
-     简介：
+       * Creating an instance of the search parameter class MXMBuildingSearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onBuildingSearchDone:response:` callback method.
 
-     详述：
+  4. Search building by building ID
 
-     * 实时显示当前定位经纬度，楼层与水平精度
-     * 切换不同的定位跟踪模式
+     file name：SearchBuildingByIDViewController
 
-* 地图数据检索
+     summary：Search building by building ID.
 
-  1. 全球范围内建筑搜索
+     detail：
 
-     文件名：
+     * Creating an instance of the search parameter class MXMBuildingSearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onBuildingSearchDone:response:` callback method.
 
-     简介：
+  5. Get the POI categories by building or floor
 
-     详述：
+     file name：CategoryIncludeInSceneViewController
 
-     * 创建检索参数类的实例
-     * 创建检索类的实例
-     * 通过`- onBuildingSearchDone:response:`回调方法获取检索结果
+     summary：Get all the POI categories of the specified building or floor.
 
-  2. 指定区域内建筑搜索
+     detail：
 
-     文件名：
+     * Creating an instance of the search parameter class MXMPOICategorySearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onPOICategorySearchDone:response:` callback method.
 
-     简介：
+  6. Search POI in the specified scene
 
-     详述：
+     文件件名：SearchPOIInSceneViewController
 
-     * 创建检索参数类的实例
+     summary：Search POI in the specified scene.
 
-     * 创建检索类的实例
+     detail：
 
-     * 通过`- onBuildingSearchDone:response:`回调方法获取检索结果
+     * Creating an instance of the search parameter class MXMPOISearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onPOISearchDone:response:` callback method.
 
-  3. 周边建筑搜索
+  7. Search POI in the specified area
 
-     文件名：
+     file name：SearchPOIInBoundViewController
 
-     简介：
+     summary：Search POI in the specified retangular area.
 
-     详述：
+     detail：
 
-       * 创建检索参数类的实例
-       * 创建检索类的实例
-       * 通过`- onBuildingSearchDone:response:`回调方法获取检索结果
+     * Creating an instance of the search parameter class MXMPOISearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onPOISearchDone:response:` callback method.
 
-  4. 指定建筑ID搜索
+  8. Search POI nearby
 
-     文件名：
+     file name：SearchPOINearbyViewController
 
-     简介：
+     summary：Search POI in the specified circular area.
 
-     详述：
+     detail：
 
-     * 创建检索参数类的实例
-     * 创建检索类的实例
-     * 通过`- onBuildingSearchDone:response:`回调方法获取检索结果
+     * Creating an instance of the search parameter class MXMPOISearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onPOISearchDone:response:` callback method.
 
-  5. 建筑内包含POI分类搜索
+  9. Search POI by POI ID
 
-     文件名：
+     file name：SearchPOIByIDViewController
 
-     简介：
+     summary：Search POI by POI ID.
 
-     详述：
+     detail：
 
-     * 创建检索参数类的实例
-     * 创建检索类的实例
-     * 通过`- onBuildingSearchDone:response:`回调方法获取检索结果
-
-  6. 指定建筑与楼层内POI搜索
-
-     文件件名：
-
-     简介：
-
-     详述：
-
-     * 创建检索参数类的实例
-     * 创建检索类的实例
-     * 通过`- onPOISearchDone:response:`回调方法获取检索结果
-
-  7. 指定区域内POI搜索
-
-     文件名：
-
-     简介：
-
-     详述：
-
-     * 创建检索参数类的实例
-     * 创建检索类的实例
-     * 通过`- onPOISearchDone:response:`回调方法获取检索结果
-
-  8. 周边POI搜索
-
-     文件名：
-
-     简介：
-
-     详述：
-
-     * 创建检索参数类的实例
-     * 创建检索类的实例
-     * 通过`- onPOISearchDone:response:`回调方法获取检索结果
-
-  9. 指定POI ID搜索
-
-     文件名：
-
-     简介：
-
-     详述：
-
-     * 创建检索参数类的实例
-     * 创建检索类的实例
-     * 通过`- onPOISearchDone:response:`回调方法获取检索结果
-
-  10. 周边POI所在方位搜索
-
-      文件名：
-
-      简介：
-
-      详述：
-
-      * 创建检索参数类的实例
-      * 创建检索类的实例
-      * 通过`- onOrientationPOISearchDone:response:`回调方法获取检索结果
-
-  11. 反地理编码检索
-
-      文件名：
-
-      简介：
-
-      详述：
-
-      * 创建检索参数类的实例
-      * 创建检索类的实例
-      * 通过`\- onGetReverseGeoCode: result: error:`回调方法获取检索结果
+     * Creating an instance of the search parameter class MXMPOISearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onPOISearchDone:response:` callback method.
 
 * 集成案例
 
-  1. 路线规划与导航
+  1. Surrounding environment recognition
 
-     文件名：
+     file name：SurroundingIdentificationViewController
 
-     简介：检索起始点间的路线并实现路网吸附、缩短功能
+     summary：Make a virtual location and identify POI information around the location.
 
-     详述：
+     detail：
 
-     * 创建检索参数类的实例
-     * 
+     * Set virtual location points.
+     * Create an MXMReverseGeoCodeSearchOption parameter instance using simulated positioning and query the MXMGeoCodeSearch instance to locate the scene details.
+     * Get scene details via the `-onGetReverseGeoCode:result:error: ` callback method.
+     * Create an instance of the search parameter class MXMOrientationPOISearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Retrieve the search result by using the `-onOrientationPOISearchDone:response: ` callback method.
 
-  2. Visual map
+  2. Route planning and navigation
 
-     文件名：
+     file name：RouteViewController
 
-     简介：
+     summary：Search the route between the starting point and end point, and show the road adsorption.
 
-     详述：
+     detail：
 
-     * 查询选中室内场景是否有Visual map数据
-     * 
+     * Creating an instance of the search parameter class MXMRouteSearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onRouteSearchDone:response:` callback method.
+     * Create an instance of MXMRoutePainter for route mapping.
+     * Creating an instance of MXMRouteAdsorber for route adsorption.
+     * Create an instance of MXMRouteShortener to follow a shortened route.
+  
+  3. Visual map
 
-  3. Siri shortcuts集成
+     file name：ShowVisualViewController
 
-     文件名：
+     summary：Integration of Visual map.
 
-     简介：
+     detail：
 
-     详述：
+     * Find out if the selected indoor scene has Visual map data.
+     * Creating an instance of the search parameter class MXMVisualBuildingSearchOption.
+     * Creating an instance of the search class MXMVisualSearch.
+     * Get retrieval result by `-onGetVisualDataInBuilding:result:error:` callback method.
+     * Create an instance of MXMVisualFlagPainter to plot information points on a map.
+     * Create an instance of MXMVisualView to show Visual map.
+  
+  4. Explore building
+  
+     file name：SearchIntegrateViewController
+  
+     summary：Common case of POI search in the building.
+  
+     detail：
+  
+     * Select an interior building.      
+     * Creating an instance of the search parameter class MXMPOICategorySearchRequest.
+     * Create an instance of the search class MXMSearchAPI.
+     * Get the search result by using the `-onPOICategorySearchDone:response:` callback method.
+     * Creating an instance of MXMPOISearchRequest by specifying a category.
+     * Get the search result by using the `-onPOISearchDone:response:` callback method.
+     * Click on POI for details.
 
-     * 
+
